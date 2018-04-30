@@ -54,7 +54,7 @@
 	\frame{
 		\frametitle{Envelope Model}
 			\begin{equation}
-			P(\nu) = W + R(\nu) \left[\sum_{i=0}^{k}{H_i(\nu)} + H_0^2 \exp \left\lbrace  -\frac{(\nu-\nu_{max}^2)}{2\sigma^2}\right\rbrace  \right]
+			P(\nu) = W + R(\nu) \left[\sum_{i=0}^{k}{H_i(\nu)} + \frac{H_0^2}{\sigma} \exp \left\lbrace  -\frac{(\nu-\nu_{max}^2)}{2\sigma^2}\right\rbrace  \right]
 			\end{equation}
 			where
 			$$ R(\nu) = \text{sinc}^2\left( \frac{\pi \nu}{2\nu_{Nyq}}\right) $$
@@ -79,19 +79,19 @@
 			\centering
 			\caption{Posterior Parameters}
 			\label{envpost}
-			\begin{tabular}[\linewidth]{lllll}
+			\begin{tabular}[\linewidth]{llllll}
 				\hline
-				& mean   & sd       & 2.5    & 97.5   \\ \hline\hline
-				$a_0$       & 15.15  & 0.4591   & 14.28  & 16.07  \\ 
-				$a_1$       & 60.96  & 0.3549   & 60.29  & 61.66  \\ 
-				$a_2$       & 59.23  & 0.4772   & 58.32  & 60.17  \\ 
-				$b_0$       & 29.76  & 1.641    & 26.61  & 33.00  \\ 
-				$b_1$       & 146.6  & 1.345    & 144.0  & 149.2  \\ 
-				$b_2$       & 514.7  & 9.656    & 495.9  & 533.8  \\ 
-				$\sigma$         & 42.57  & 0.9466   & 40.69  & 44.40  \\ 
-				$W$         & 7.808  & 0.01144  & 7.786  & 7.831  \\ 
-				$H_0$       & 29.82  & 0.3629   & 29.10  & 30.53  \\ 
-				$\nu_{max}$ & 542.2  & 0.8259   & 540.5  & 543.8  \\ 
+				           &                   & mean   & sd       & 2.5    & 97.5   \\ \hline\hline
+				$a_0$      & $[ppm]$           & 15.15  & 0.4591   & 14.28  & 16.07  \\ 
+				$a_1$      & $[ppm]$           & 60.96  & 0.3549   & 60.29  & 61.66  \\ 
+				$a_2$      & $[ppm]$           & 59.23  & 0.4772   & 58.32  & 60.17  \\ 
+				$b_0$      &  $[\mu Hz]$       & 29.76  & 1.641    & 26.61  & 33.00  \\ 
+				$b_1$      & $[\mu Hz]$        & 146.6  & 1.345    & 144.0  & 149.2  \\ 
+				$b_2$      & $[\mu Hz]$        & 514.7  & 9.656    & 495.9  & 533.8  \\ 
+				$\sigma$   &  $[\mu Hz]$       & 42.57  & 0.9466   & 40.69  & 44.40  \\ 
+				$W$        &  $[ppm^2/\mu Hz]$ & 7.808  & 0.01144  & 7.786  & 7.831  \\ 
+				$H_0$      & $[ppm/\mu Hz]$    & 29.82  & 0.3629   & 29.10  & 30.53  \\ 
+				$\nu_{max}$&$[\mu Hz]$         & 542.2  & 0.8259   & 540.5  & 543.8  \\ 
 			\end{tabular}
 		\end{table}
 	}
@@ -148,12 +148,12 @@
 			\centering
 			\caption{Posterior Parameters}
 			\label{modepost}
-			\begin{tabular}[\linewidth]{lllll}
+			\begin{tabular}[\linewidth]{llllll}
 				\hline
-				                  & mean   & sd      & 2.5    & 97.5   \\ \hline\hline
-				$A [ppm/\mu Hz]$  & 7.480  & 0.2237  & 7.057  & 7.938  \\
-				$\nu_0 [\mu Hz]$  & 477.2  & 0.01817 & 477.1  & 477.2  \\
-				$\Gamma [\mu Hz]$ & 0.2320 & 0.01872 & 0.1948 & 0.2684 \\
+				         &                & mean   & sd      & 2.5    & 97.5   \\ \hline\hline
+				$A$      & $[ppm/\mu Hz]$ & 7.480  & 0.2237  & 7.057  & 7.938  \\
+				$\nu_0$  & $[\mu Hz]$     & 477.2  & 0.01817 & 477.1  & 477.2  \\
+				$\Gamma$ & $[\mu Hz]$     & 0.2320 & 0.01872 & 0.1948 & 0.2684 \\
 			\end{tabular}
 		\end{table}		
 	}
@@ -167,11 +167,13 @@
 	}
 
 	\frame {
-		\frametitle{Conclusions}
+		\frametitle{Remarks}
 		\begin{enumerate}
-			\item KIC 7107778 is comprised of two subgiant stars with overlapping, solar-like power spectra
-			\item The estimated stellar parameters of these stars show that they are nearly identical
+			\item It was a challenge to compute because of the high-dimensionality and multi-modality
+			\item Authors provided no information about their priors, so I had to come up with my own
+			\item Wish I could have done computations over full dataset without interpolation
 		\end{enumerate}
+		Special thanks to Dr. Steve Kawaler, Dr. Alicia Carriquiry, and Nicholas Berry for their assistance in this analysis.
 	}
 
 \end{document}
